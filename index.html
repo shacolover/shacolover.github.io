@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>shacolover | Profile</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-dark: #0b0c16;
+      --bg-card: rgba(22, 24, 43, 0.7);
+      --card-border: rgba(147, 51, 234, 0.25);
+      --primary: #9333ea;
+      --primary-glow: rgba(147, 51, 234, 0.6);
+      --accent-cyan: #06b6d4;
+      --accent-pink: #ec4899;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      --font-title: 'Orbitron', 'Pretendard', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.08) 0%, transparent 60%);
+      background-attachment: fixed;
+    }
+
+    /* Ambient background grid lines */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent-cyan), var(--accent-pink));
+      filter: blur(12px);
+      opacity: 0.75;
+      animation: pulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; transform: scale(0.98); }
+      100% { opacity: 0.9; transform: scale(1.05); }
+    }
+
+    .avatar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #131528;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: #c084fc;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(147, 51, 234, 0.15);
+      border: 1px solid rgba(147, 51, 234, 0.4);
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #d8b4fe;
+      margin-bottom: 1rem;
+    }
+
+    .badge-status .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    .nickname {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #ffffff 30%, #c084fc 70%, var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 0 30px var(--primary-glow);
+    }
+
+    .bio {
+      font-size: 1.15rem;
+      color: var(--text-sub);
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    /* Action / Interaction Buttons in Hero */
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.4rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #7c3aed);
+      color: #fff;
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Section Layout */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+    }
+
+    .section-title i {
+      color: var(--primary);
+    }
+
+    /* Cards & Glassmorphism */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(147, 51, 234, 0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px -5px rgba(147, 51, 234, 0.25);
+    }
+
+    /* Hobbies Grid */
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .hobby-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+
+    .hobby-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .icon-game {
+      background: rgba(147, 51, 234, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(147, 51, 234, 0.4);
+    }
+
+    .icon-music {
+      background: rgba(6, 182, 212, 0.2);
+      color: #22d3ee;
+      border: 1px solid rgba(6, 182, 212, 0.4);
+    }
+
+    .icon-sing {
+      background: rgba(236, 72, 153, 0.2);
+      color: #f472b6;
+      border: 1px solid rgba(236, 72, 153, 0.4);
+    }
+
+    .icon-workout {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .hobby-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hobby-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* Music Section (J-POP Featured & Interactive Playlist) */
+    .music-feature {
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .music-feature::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+
+    .music-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .music-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      background: rgba(236, 72, 153, 0.15);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #f472b6;
+      font-weight: 600;
+    }
+
+    /* Sub-genre highlights (Band, Singer-Songwriter, City Pop) */
+    .genre-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    .genre-card {
+      background: rgba(14, 16, 32, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1rem;
+      display: flex;
+      gap: 0.85rem;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .genre-card:hover {
+      border-color: rgba(147, 51, 234, 0.5);
+      background: rgba(20, 22, 45, 0.75);
+      transform: translateY(-2px);
+    }
+
+    .genre-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .genre-card-text h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .genre-card-text p {
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      line-height: 1.35;
+    }
+
+    /* Player Mock */
+    .music-player-mock {
+      background: rgba(11, 12, 22, 0.8);
+      border-radius: 18px;
+      padding: 1.5rem;
+      border: 1px solid rgba(147, 51, 234, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      margin-bottom: 1.5rem;
+    }
+
+    .player-main-row {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .album-art {
+      width: 76px;
+      height: 76px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(236, 72, 153, 0.35);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .album-art.playing {
+      animation: vinylRotate 8s linear infinite;
+    }
+
+    @keyframes vinylRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .music-info {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .current-genre-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      background: rgba(147, 51, 234, 0.25);
+      color: #d8b4fe;
+      margin-bottom: 0.3rem;
+    }
+
+    .music-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .music-artist {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Player Controls */
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .control-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      font-size: 1.1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .control-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .control-btn.play-toggle {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+      color: #fff;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 12px var(--primary-glow);
+    }
+
+    .control-btn.play-toggle:hover {
+      transform: scale(1.08);
+      background: linear-gradient(135deg, #a855f7, #f472b6);
+    }
+
+    /* Progress bar mock */
+    .progress-container {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-sub);
+    }
+
+    .progress-bar-bg {
+      flex-grow: 1;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .progress-bar-fill {
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent-pink));
+      border-radius: 9999px;
+      transition: width 0.3s ease;
+    }
+
+    /* Sound Visualizer Animation */
+    .visualizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 24px;
+      margin-left: auto;
+    }
+
+    .bar {
+      width: 4px;
+      background: var(--accent-pink);
+      border-radius: 2px;
+      animation: bounce 1.2s ease-in-out infinite alternate;
+    }
+
+    .visualizer.paused .bar {
+      animation-play-state: paused;
+      height: 4px !important;
+    }
+
+    .bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+    .bar:nth-child(2) { height: 80%; animation-delay: 0.3s; background: var(--primary); }
+    .bar:nth-child(3) { height: 100%; animation-delay: 0.2s; background: var(--accent-cyan); }
+    .bar:nth-child(4) { height: 50%; animation-delay: 0.4s; }
+    .bar:nth-child(5) { height: 75%; animation-delay: 0.15s; background: var(--primary); }
+    .bar:nth-child(6) { height: 30%; animation-delay: 0.35s; }
+
+    @keyframes bounce {
+      0% { height: 15%; }
+      100% { height: 100%; }
+    }
+
+    /* Playlist Filter Tabs */
+    .playlist-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-sub);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(236, 72, 153, 0.3));
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Track List */
+    .playlist-wrapper {
+      background: rgba(14, 16, 32, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .playlist-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .track-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      gap: 0.9rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .track-item:last-child {
+      border-bottom: none;
+    }
+
+    .track-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .track-item.active {
+      background: rgba(147, 51, 234, 0.16);
+      border-left: 3px solid var(--accent-pink);
+    }
+
+    .track-num {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      width: 22px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .track-item.active .track-num {
+      color: var(--accent-pink);
+    }
+
+    .track-main {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .track-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-artist {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 0.15rem;
+    }
+
+    .track-badge {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+
+    .track-duration {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Interactive Like & Mini Guestbook Button */
+    .interactive-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: rgba(147, 51, 234, 0.08);
+      border: 1px dashed rgba(147, 51, 234, 0.35);
+    }
+
+    .like-btn {
+      background: rgba(236, 72, 153, 0.15);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      color: #f472b6;
+      padding: 0.6rem 1.2rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .like-btn:hover {
+      background: rgba(236, 72, 153, 0.3);
+      transform: scale(1.05);
+    }
+
+    .like-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(19, 21, 40, 0.95);
+      border: 1px solid var(--primary);
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      font-size: 0.95rem;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      .nickname {
+        font-size: 2.2rem;
+      }
+      .music-player-mock {
+        flex-direction: column;
+        text-align: center;
+      }
+      .visualizer {
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="avatar-wrapper">
+        <div class="avatar-glow"></div>
+        <div class="avatar">
+          <i class="fa-solid fa-masks-theater"></i>
+        </div>
+      </div>
+
+      <div class="badge-status">
+        <span class="status-dot"></span> Online & Exploring
+      </div>
+
+      <h1 class="nickname">shacolover</h1>
+      <p class="bio">
+        안녕하세요! 일상에 짜릿한 즐거움과 감성적인 멜로디를 채워가는 <strong>shacolover</strong>입니다.
+        좋아하는 게임을 즐기고, 좋은 음악에 푹 빠지며 활력 넘치는 하루를 보내고 있습니다.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showToast('방문해 주셔서 감사합니다! 반가워요 ✨')">
+          <i class="fa-solid fa-hand-peace"></i> 인사하기
+        </button>
+        <button class="btn btn-secondary" onclick="scrollToSection('hobbies')">
+          <i class="fa-solid fa-compass"></i> 둘러보기
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hobbies Section -->
+      <section id="hobbies">
+        <h2 class="section-title">
+          <i class="fa-solid fa-heart"></i> My Hobbies (취미)
+        </h2>
+        
+        <div class="hobbies-grid">
+          <!-- 1. 게임 -->
+          <div class="glass-card hobby-card">
+            <div class="hobby-icon icon-game">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <h3 class="hobby-title">게임 (Gaming)</h3>
+            <p class="hobby-desc">
+              전략적인 플레이와 승리의 쾌감을 사랑합니다. 신중한 수 싸움과 반전의 매력이 있는 순간들을 즐깁니다.
+            </p>
+          </div>
+
+          <!-- 2. 음악 감상 -->
+          <div class="glass-card hobby-card">
+            <div class="hobby-icon icon-music">
+              <i class="fa-solid fa-headphones"></i>
+            </div>
+            <h3 class="hobby-title">음악 감상 (Music)</h3>
+            <p class="hobby-desc">
+              기분 전환과 몰입의 순간마다 항상 이어폰을 꽂고 음악 속에서 여유와 영감을 찾습니다.
+            </p>
+          </div>
+
+          <!-- 3. 노래 부르기 -->
+          <div class="glass-card hobby-card">
+            <div class="hobby-icon icon-sing">
+              <i class="fa-solid fa-microphone-lines"></i>
+            </div>
+            <h3 class="hobby-title">노래 부르기 (Singing)</h3>
+            <p class="hobby-desc">
+              좋아하는 곡을 직접 부르며 스트레스를 날리고, 멜로디와 가사에 감정을 담아보는 것을 즐깁니다.
+            </p>
+          </div>
+
+          <!-- 4. 운동 -->
+          <div class="glass-card hobby-card">
+            <div class="hobby-icon icon-workout">
+              <i class="fa-solid fa-dumbbell"></i>
+            </div>
+            <h3 class="hobby-title">운동 (Workout)</h3>
+            <p class="hobby-desc">
+              몸을 움직이며 땀 흘릴 때 느끼는 개운함과 꾸준한 성취감을 통해 건강한 에너지를 충전합니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Music Taste Section (J-POP: Band, Singer-Songwriter, City Pop) -->
+      <section id="music">
+        <h2 class="section-title">
+          <i class="fa-solid fa-compact-disc"></i> Favorite Music: J-POP Playlists
+        </h2>
+
+        <div class="glass-card music-feature">
+          <div class="music-header">
+            <div>
+              <span class="music-tag">
+                <i class="fa-solid fa-headphones-simple"></i> My Music Identity
+              </span>
+              <h3 style="font-size: 1.45rem; font-weight: 700; margin-top: 0.4rem; color: #fff;">
+                J-POP 밴드 & 아티스트 컬렉션
+              </h3>
+            </div>
+            <span style="color: var(--text-sub); font-size: 0.9rem;">
+              <i class="fa-solid fa-sliders"></i> 취향 저격 플레이리스트
+            </span>
+          </div>
+
+          <p style="color: var(--text-sub); line-height: 1.6; margin-bottom: 0.5rem;">
+            특히 강렬하고 질주감 넘치는 <strong>J-Band 사운드</strong>, 독창적인 음색과 깊은 감성의 <strong>싱어송라이터</strong>, 
+            그리고 낭만적인 그루브의 <strong>시티팝(City Pop)</strong>에 푹 빠져 있습니다.
+          </p>
+
+          <!-- 3 Sub-genres Highlight -->
+          <div class="genre-categories">
+            <div class="genre-card">
+              <div class="genre-card-icon" style="background: rgba(147, 51, 234, 0.2); color: #c084fc;">
+                <i class="fa-solid fa-guitar"></i>
+              </div>
+              <div class="genre-card-text">
+                <h4>J-Band (밴드 사운드)</h4>
+                <p>생동감 넘치는 드럼·기타 리프와 시원한 질주감 (히게단, 킹누, 미세스)</p>
+              </div>
+            </div>
+
+            <div class="genre-card">
+              <div class="genre-card-icon" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee;">
+                <i class="fa-solid fa-microphone-lines"></i>
+              </div>
+              <div class="genre-card-text">
+                <h4>싱어송라이터 (Singer-Songwriter)</h4>
+                <p>독보적인 보컬 톤과 마음을 울리는 시적인 스토리텔링 (바운디, 아이묭, 유우리)</p>
+              </div>
+            </div>
+
+            <div class="genre-card">
+              <div class="genre-card-icon" style="background: rgba(236, 72, 153, 0.2); color: #f472b6;">
+                <i class="fa-solid fa-city"></i>
+              </div>
+              <div class="genre-card-text">
+                <h4>시티팝 (City Pop)</h4>
+                <p>밤거리 드라이브 감성의 세련된 80s 레트로 신스 & 베이스 그루브</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Music Player UI -->
+          <div class="music-player-mock">
+            <div class="player-main-row">
+              <div class="album-art playing" id="playerAlbumArt">
+                <i class="fa-solid fa-compact-disc" id="playerArtIcon"></i>
+              </div>
+              <div class="music-info">
+                <span class="current-genre-badge" id="playerGenreBadge">🎸 J-Band</span>
+                <div class="music-name" id="playerTrackTitle">괴수의 꽃노래 (怪獣の花唄)</div>
+                <div class="music-artist" id="playerArtist">Vaundy • J-Rock / Alternative</div>
+              </div>
+              <!-- Sound Visualizer -->
+              <div class="visualizer" id="visualizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+            </div>
+
+            <!-- Player Controls -->
+            <div class="player-controls">
+              <button class="control-btn" onclick="prevTrack()" title="이전 곡">
+                <i class="fa-solid fa-backward-step"></i>
+              </button>
+              <button class="control-btn play-toggle" id="playToggleBtn" onclick="togglePlay()" title="재생 / 일시정지">
+                <i class="fa-solid fa-pause" id="playToggleIcon"></i>
+              </button>
+              <button class="control-btn" onclick="nextTrack()" title="다음 곡">
+                <i class="fa-solid fa-forward-step"></i>
+              </button>
+
+              <div class="progress-container">
+                <span id="currentTime">01:45</span>
+                <div class="progress-bar-bg" onclick="simulateSeek(event)">
+                  <div class="progress-bar-fill" id="progressFill" style="width: 48%;"></div>
+                </div>
+                <span id="totalDuration">03:45</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Playlist Filter Tabs -->
+          <div class="playlist-tabs">
+            <button class="tab-btn active" onclick="filterPlaylist('all', this)">모든 트랙 (All)</button>
+            <button class="tab-btn" onclick="filterPlaylist('band', this)">🎸 J-Band</button>
+            <button class="tab-btn" onclick="filterPlaylist('singer', this)">🎙️ 싱어송라이터</button>
+            <button class="tab-btn" onclick="filterPlaylist('citypop', this)">🌆 시티팝</button>
+          </div>
+
+          <!-- Track List (Click to select & play) -->
+          <div class="playlist-wrapper">
+            <ul class="playlist-list" id="playlistContainer">
+              <!-- Dynamically populated by JS -->
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive / Cheering Section -->
+      <section>
+        <div class="glass-card interactive-box">
+          <div>
+            <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">
+              shacolover에게 응원 남기기 💜
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-sub);">
+              페이지가 마음에 드셨다면 응원의 하트를 꾹 눌러주세요!
+            </div>
+          </div>
+          <button class="like-btn" id="likeBtn" onclick="handleLike()">
+            <i class="fa-solid fa-heart"></i>
+            <span id="likeText">응원하기</span>
+            <span id="likeCount" style="font-weight: 800; margin-left: 2px;">0</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 shacolover. All rights reserved.</p>
+      <p style="margin-top: 0.4rem; color: rgba(255, 255, 255, 0.4);">
+        Designed with Passion for Games, J-POP & Fitness.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Toast Element -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-circle-check" style="color: #22c55e;"></i>
+    <span id="toastMessage">알림</span>
+  </div>
+
+  <script>
+    // Smooth scrolling to section
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Like Counter Logic with LocalStorage
+    let count = parseInt(localStorage.getItem('shaco_likes') || '0', 10);
+    const countEl = document.getElementById('likeCount');
+    const likeBtn = document.getElementById('likeBtn');
+    countEl.textContent = count;
+
+    function handleLike() {
+      count += 1;
+      localStorage.setItem('shaco_likes', count);
+      countEl.textContent = count;
+
+      // Heart bounce effect
+      likeBtn.style.transform = 'scale(1.15)';
+      setTimeout(() => {
+        likeBtn.style.transform = '';
+      }, 150);
+
+      showToast('응원해 주셔서 감사합니다! (하트 +1) 💕');
+    }
+
+    // Toast function
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+      toastMsg.textContent = msg;
+      
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    /* ===================================================
+       J-POP Playlist Data & Player Controller
+       - Categories: band (J-Band), singer (Singer-Songwriter), citypop (City Pop)
+       =================================================== */
+    const playlistData = [
+      {
+        id: 1,
+        title: "괴수의 꽃노래 (怪獣の花唄)",
+        artist: "Vaundy (바운디)",
+        genre: "singer",
+        genreLabel: "🎙️ 싱어송라이터",
+        duration: "03:45",
+        icon: "fa-guitar",
+        gradient: "linear-gradient(135deg, #ec4899, #8b5cf6)"
+      },
+      {
+        id: 2,
+        title: "Pretender",
+        artist: "Official髭男dism (오피셜히게단디즘)",
+        genre: "band",
+        genreLabel: "🎸 J-Band",
+        duration: "05:26",
+        icon: "fa-drum",
+        gradient: "linear-gradient(135deg, #3b82f6, #8b5cf6)"
+      },
+      {
+        id: 3,
+        title: "青と夏 (청과 여름)",
+        artist: "Mrs. GREEN APPLE (미세스 그린 애플)",
+        genre: "band",
+        genreLabel: "🎸 J-Band",
+        duration: "04:32",
+        icon: "fa-bolt",
+        gradient: "linear-gradient(135deg, #10b981, #06b6d4)"
+      },
+      {
+        id: 4,
+        title: "白日 (백일)",
+        artist: "King Gnu (킹누)",
+        genre: "band",
+        genreLabel: "🎸 J-Band",
+        duration: "04:36",
+        icon: "fa-compact-disc",
+        gradient: "linear-gradient(135deg, #6366f1, #d946ef)"
+      },
+      {
+        id: 5,
+        title: "마리골드 (マリーゴールド)",
+        artist: "Aimyon (아이묭)",
+        genre: "singer",
+        genreLabel: "🎙️ 싱어송라이터",
+        duration: "05:06",
+        icon: "fa-music",
+        gradient: "linear-gradient(135deg, #f59e0b, #ec4899)"
+      },
+      {
+        id: 6,
+        title: "베텔기우스 (ベテルギウス)",
+        artist: "Yuuri (유우리)",
+        genre: "singer",
+        genreLabel: "🎙️ 싱어송라이터",
+        duration: "03:50",
+        icon: "fa-star",
+        gradient: "linear-gradient(135deg, #8b5cf6, #3b82f6)"
+      },
+      {
+        id: 7,
+        title: "Stay With Me (真夜中のドア)",
+        artist: "Miki Matsubara (마츠바라 미키)",
+        genre: "citypop",
+        genreLabel: "🌆 시티팝",
+        duration: "04:34",
+        icon: "fa-city",
+        gradient: "linear-gradient(135deg, #ec4899, #f43f5e)"
+      },
+      {
+        id: 8,
+        title: "Plastic Love (プラスティック・ラブ)",
+        artist: "Mariya Takeuchi (타케우치 마리야)",
+        genre: "citypop",
+        genreLabel: "🌆 시티팝",
+        duration: "04:53",
+        icon: "fa-moon",
+        gradient: "linear-gradient(135deg, #06b6d4, #3b82f6)"
+      },
+      {
+        id: 9,
+        title: "Sparkle",
+        artist: "Tatsuro Yamashita (야마시타 타츠로)",
+        genre: "citypop",
+        genreLabel: "🌆 시티팝",
+        duration: "04:16",
+        icon: "fa-sun",
+        gradient: "linear-gradient(135deg, #f97316, #eab308)"
+      }
+    ];
+
+    let currentTrackIndex = 0;
+    let isPlaying = true;
+    let currentFilter = 'all';
+
+    function renderPlaylist(filter = 'all') {
+      currentFilter = filter;
+      const container = document.getElementById('playlistContainer');
+      container.innerHTML = '';
+
+      const filteredTracks = playlistData.filter(track => {
+        if (filter === 'all') return true;
+        return track.genre === filter;
+      });
+
+      filteredTracks.forEach((track) => {
+        const originalIndex = playlistData.findIndex(t => t.id === track.id);
+        const isActive = originalIndex === currentTrackIndex;
+
+        const li = document.createElement('li');
+        li.className = `track-item ${isActive ? 'active' : ''}`;
+        li.onclick = () => selectTrack(originalIndex);
+
+        li.innerHTML = `
+          <div class="track-num">
+            ${isActive && isPlaying ? '<i class="fa-solid fa-volume-high" style="color: var(--accent-pink);"></i>' : originalIndex + 1}
+          </div>
+          <div class="track-main">
+            <div class="track-title">
+              ${track.title}
+            </div>
+            <div class="track-artist">${track.artist}</div>
+          </div>
+          <span class="track-badge">${track.genreLabel}</span>
+          <span class="track-duration">${track.duration}</span>
+        `;
+
+        container.appendChild(li);
+      });
+    }
+
+    function selectTrack(index) {
+      currentTrackIndex = index;
+      const track = playlistData[currentTrackIndex];
+
+      // Update player info
+      document.getElementById('playerTrackTitle').textContent = track.title;
+      document.getElementById('playerArtist').textContent = track.artist;
+      document.getElementById('playerGenreBadge').textContent = track.genreLabel;
+      document.getElementById('totalDuration').textContent = track.duration;
+      document.getElementById('currentTime').textContent = '00:00';
+      document.getElementById('progressFill').style.width = '0%';
+
+      // Update album art gradient and icon
+      const albumArt = document.getElementById('playerAlbumArt');
+      albumArt.style.background = track.gradient;
+      const artIcon = document.getElementById('playerArtIcon');
+      artIcon.className = `fa-solid ${track.icon}`;
+
+      // Start playing
+      isPlaying = true;
+      updatePlayState();
+
+      // Re-render playlist to show active item
+      renderPlaylist(currentFilter);
+
+      showToast(`🎵 "${track.title}" 선택됨`);
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      updatePlayState();
+      renderPlaylist(currentFilter);
+      showToast(isPlaying ? '▶️ 플레이리스트 재생 중' : '⏸️ 재생 일시정지');
+    }
+
+    function updatePlayState() {
+      const albumArt = document.getElementById('playerAlbumArt');
+      const visualizer = document.getElementById('visualizer');
+      const playToggleIcon = document.getElementById('playToggleIcon');
+
+      if (isPlaying) {
+        albumArt.classList.add('playing');
+        visualizer.classList.remove('paused');
+        playToggleIcon.className = 'fa-solid fa-pause';
+      } else {
+        albumArt.classList.remove('playing');
+        visualizer.classList.add('paused');
+        playToggleIcon.className = 'fa-solid fa-play';
+      }
+    }
+
+    function prevTrack() {
+      currentTrackIndex = (currentTrackIndex - 1 + playlistData.length) % playlistData.length;
+      selectTrack(currentTrackIndex);
+    }
+
+    function nextTrack() {
+      currentTrackIndex = (currentTrackIndex + 1) % playlistData.length;
+      selectTrack(currentTrackIndex);
+    }
+
+    function filterPlaylist(category, btnElement) {
+      // Toggle active tab style
+      const tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(t => t.classList.remove('active'));
+      if (btnElement) {
+        btnElement.classList.add('active');
+      }
+
+      renderPlaylist(category);
+    }
+
+    function simulateSeek(event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const percentage = Math.max(0, Math.min(100, (clickX / rect.width) * 100));
+      document.getElementById('progressFill').style.width = `${percentage}%`;
+    }
+
+    // Auto progress animation simulator
+    setInterval(() => {
+      if (isPlaying) {
+        const fill = document.getElementById('progressFill');
+        let currentWidth = parseFloat(fill.style.width) || 0;
+        if (currentWidth >= 100) {
+          nextTrack();
+        } else {
+          fill.style.width = `${currentWidth + 0.8}%`;
+        }
+      }
+    }, 1000);
+
+    // Initial render on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPlaylist('all');
+      selectTrack(0);
+    });
+    // Call directly in case DOM is already loaded
+    renderPlaylist('all');
+  </script>
+</body>
+</html>
